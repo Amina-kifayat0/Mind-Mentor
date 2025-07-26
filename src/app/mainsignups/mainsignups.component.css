@@ -1,0 +1,20 @@
+body {
+  background-color: grey; /* Light blue background color */
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.form-card {
+  padding: 0px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(153, 145, 145, 0.1);
+}
+
+    .centered-image {
+        width: 50%; /* Adjusts the width of the image */
+        display: block;
+        margin: 0 auto; /* Centers the image horizontally */
+    }

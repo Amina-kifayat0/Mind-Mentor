@@ -1,0 +1,277 @@
+<style>
+   button {
+          width: 15%;
+          padding: 10px;
+          background-color: #1e1e66;
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          cursor: pointer;
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 19px;
+          font-weight: bold;
+          display: block;
+          margin: 0 auto;
+      }
+
+      h5{
+        font-size: 23px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        text-align: center;
+      }
+      input{
+        border-radius: 18px;
+        size: 20;
+        align-self: center;
+      }
+      .button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center;    /* Center the buttons vertically if required */
+             /* Add space between the buttons */
+}
+
+.button-left {
+  background-color: #1e1e66
+}
+
+.button-right {
+  background-color: #5e5e77
+  ;}
+  hr {
+    border: none;
+    height: 3px;
+    background-color: rgb(116, 106, 106);
+    width: 70%; /* Adjust width as needed */
+    margin: 10px auto; /* Centers the line */
+}
+
+
+.sentiment-box {
+    background: linear-gradient(135deg, #a0c4ff, #cce5ff); /* Light blue gradient */
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    max-width: 900px; /* Increased width */
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+    color: #003366; /* Dark blue for text */
+}
+
+.sentiment-box h2 {
+    font-size: 26px;
+    color: #002244; /* Deep blue */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.sentiment-box p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #003366;
+}
+
+.positive {
+    color: #28a745; /* Green */
+    font-weight: bold;
+}
+
+.neutral {
+    color: #ffcc00; /* Yellow */
+    font-weight: bold;
+}
+
+.negative {
+    color: #dc3545; /* Red */
+    font-weight: bold;
+}
+
+
+.sentiment-heading {
+    font-size: 20px; /* Slightly larger */
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #003366; /* Dark blue */
+    margin-bottom: 15px;
+}
+
+.sentiment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Space between elements */
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    max-width: 500px; /* Moderate width increase */
+    background: #f0f8ff; /* Light blue background */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center alignment */
+}
+
+.sentiment-form label {
+    font-size: 18px;
+    color: #003366;
+    text-align: center;
+    width: 100%;
+}
+
+.sentiment-form input {
+    width: 100%;
+    max-width: 450px; /* Slightly bigger */
+    height: 45px; /* Slightly taller */
+    padding: 8px;
+    border: 1.5px solid #007bff;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 450px;
+    margin-top: 12px;
+}
+
+.button-left,
+.button-right {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.button-left {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-right {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.button-left:hover {
+    background-color: #0056b3;
+}
+
+.button-right:hover {
+    background-color: #d63447;
+}
+/* Styles for the sentiment popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 5px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+</style>
+<body>
+  <app-navbar></app-navbar>
+  <br>
+<br>
+<h2 style=" text-align: center;
+font-family: 'Poppins', sans-serif; /* Modern and clean font */
+font-size: 45px;
+
+color: black;">SENTIMENT ANALYSIS</h2>
+<hr>
+<br>
+<img src="images/sent.JPG"class="img-fluid w-50 d-none d-sm-block" style="display: block;margin: 0 auto;" alt=""/>
+<br>
+<div class="sentiment-box">
+  <h2>Understanding Your Sentiment Analysis Result</h2>
+  <p><span class="positive">Positive 😊:</span> Your responses indicate a positive sentiment. Keep up the good mental health practices!</p>
+  <p><span class="neutral">Neutral 😐:</span> Your sentiment appears balanced. Consider mindfulness techniques if you’re feeling unsure.</p>
+  <p><span class="negative">Negative 😔:</span> Your sentiment suggests distress. Don't hesitate to reach out for support. 💙</p>
+</div>
+
+<h5 class="sentiment-heading">
+  For Sentiment Analysis of your Social, please paste URL of your Twitter Account:
+</h5>
+
+<form class="sentiment-form" (ngSubmit)="analyzeSentiment()" #sentimentForm="ngForm">
+  <label for="X-url">X URL:</label>
+  <input type="url"
+         id="twitter-url"
+         name="twitter-url"
+         [(ngModel)]="profileUrl"
+         placeholder="https://X.com/yourprofile"
+         required
+         #profileUrlInput="ngModel">
+
+  <div *ngIf="profileUrlInput.invalid && profileUrlInput.touched" class="error-message">
+    Please enter a valid URL.
+  </div>
+
+  <div class="button-container">
+    <button type="submit" class="button-left" [disabled]="sentimentForm.invalid || loading">
+      {{ loading ? 'Analyzing...' : 'Analyze Sentiment' }}
+    </button>
+    <button class="button-right" routerLink="/appointmentmodule">Skip</button>
+  </div>
+</form>
+
+<div *ngIf="sentimentResult" class="popup" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <h3>{{ sentimentResult }}</h3>
+    <p *ngIf="reasonText">{{ reasonText }}</p>
+    <button (click)="handlePopupClose()">OK</button>
+  </div>
+</div>
+
+
+<!-- Error Handling -->
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+
+<br><br><br>
+
+
+<app-footer></app-footer>
+</body>

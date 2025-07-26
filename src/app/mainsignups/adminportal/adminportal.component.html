@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    :root {
+      --primary-color: #1e1e66;
+      --secondary-color: #ffffff;
+      --accent-color: #3a3a8a;
+      --text-color: #333333;
+      --light-gray: #f5f5f5;
+      --dark-gray: #2a2a2a;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--primary-color);
+      height: 100vh;
+      display: flex;
+    }
+
+    .admin-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1e1e66;
+      color: white;
+      padding: 20px 0;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: 18px;
+    }
+
+    .sidebar-header {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .sidebar-header h2 {
+      color: var(--secondary-color);
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background-color: black;
+      background-image: url('images/akadmin.jfif');
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 5px;
+    }
+
+    .sidebar-menu a {
+      display: block;
+      padding: 12px 20px;
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-family: 'Times New Roman', Times, serif;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-menu a:hover {
+      background-color: grey;
+      border-left: 3px solid var(--secondary-color);
+    }
+
+    .sidebar-menu a.active {
+      background-color: rgb(45, 145, 228);
+      border-left: 3px solid var(--secondary-color);
+      font-weight: bold;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      background-color: var(--secondary-color);
+      overflow-y: auto;
+    }
+
+    .content-section {
+      width: 100%;
+      height: 100%;
+      background-color: var(--secondary-color);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      margin-left: 0px;
+    }
+
+    th {
+      background-color: black;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid black;
+    }
+
+    tr:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .btn {
+      padding: 8px 15px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      margin-right: 5px;
+    }
+
+    .btn-primary {
+      background-color: rgb(106, 153, 97);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: rgb(134, 125, 125);
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal .modal-content {
+      background-color: #000;
+      color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      width: 90%;
+      max-width: 350px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .graph-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .graph-card {
+      background-color: var(--secondary-color);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .graph-placeholder {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-gray);
+      border-radius: 5px;
+      color: var(--text-color);
+    }
+
+    .update-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .update-modal-content {
+      background-color: rgb(224, 220, 230);
+      padding: 30px;
+      border-radius: 12px;
+      width: 600px;
+      max-width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .update-modal-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .update-modal-content .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .update-modal-content label {
+      font-weight: 500;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .update-modal-content input,
+    .update-modal-content textarea,
+    .update-modal-content select {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #fff;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+
+    .update-modal-content input:focus,
+    .update-modal-content textarea:focus,
+    .update-modal-content select:focus {
+      outline: none;
+      border-color: #6d28d9;
+    }
+
+    .update-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .update-modal-actions button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .update-modal-actions .save-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+    }
+
+    .update-modal-actions .cancel-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+    }
+
+    .update-modal-actions button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .admin-dashboard {
+  padding: 20px;
+}
+
+.analytics-summary {
+  margin-bottom: 20px;
+}
+
+.analytics-chart {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1 style="font-family: 'Times New Roman', Times, serif;font-size: 25px; font-weight: bold;">Admin Dashboard</h1>
+      </div>
+      <div class="profile-pic" (click)="openProfileModal()"></div>
+
+      <ul class="sidebar-menu">
+        <li><a (click)="showSection('users')" [class.active]="activeSection === 'users'">User's Data</a></li>
+        <li><a (click)="showSection('therapists')" [class.active]="activeSection === 'therapists'">Therapist Record</a></li>
+        <li><a (click)="showSection('requests')" [class.active]="activeSection === 'requests'">Therapist Requests</a></li>
+        <li><a (click)="showSection('Appointment Data')" [class.active]="activeSection === 'Appointment Data'">Appointment Data</a></li>
+        <li><a (click)="showSection('data')" [class.active]="activeSection === 'data'">Data</a></li>
+        <li><a (click)="showSection('feedback')" [class.active]="activeSection === 'feedback'">App Feedback</a></li>
+        <li><a (click)="showSection('blocked therapists')" [class.active]="activeSection === 'blocked therapists'">Blocked List</a></li>
+
+        <li><a (click)="logoutAdmin()">↩🔒 Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Users Section -->
+      <div class="content-section" *ngIf="activeSection === 'users'">
+        <h2>Users Data</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.gender }}</td>
+                <td><button class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Therapists Section -->
+      <div class="content-section" *ngIf="activeSection === 'therapists'">
+        <h2>Therapist Record</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Qualification</th>
+                <th>Experience</th>
+                <th>Contact Number</th>
+                <th>License</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let therapist of therapists">
+                <td>{{ therapist.username }}</td>
+                <td>{{ therapist.age }}</td>
+                <td>{{ therapist.gender }}</td>
+                <td>{{ therapist.email }}</td>
+                <td>{{ therapist.qualification }}</td>
+                <td>{{ therapist.experience }} years</td>
+                <td>{{ therapist.contact_number }}</td>
+                <td>
+                  <a *ngIf="therapist.cv_document" [href]="'http://localhost:5000/' + therapist.cv_document" target="_blank" class="btn btn-primary">
+                    View license
+                  </a>
+                </td>
+                <td>
+                  <button class="btn btn-warning"       (click)="openUpdateModal(therapist)">Update</button>
+                  <button class="btn btn-danger" (click)="deleteTherapist(therapist._id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Therapist Requests Section -->
+      <div class="content-section" *ngIf="activeSection === 'requests'">
+        <h2>Therapist Requests</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Qualification</th>
+                <th>Experience</th>
+                <th>Contact Number</th>
+                <th>Document</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let therapist of therapistRequests">
+                <td>{{ therapist.username }}</td>
+                <td>{{ therapist.age }}</td>
+                <td>{{ therapist.gender }}</td>
+                <td>{{ therapist.email }}</td>
+                <td>{{ therapist.qualification }}</td>
+                <td>{{ therapist.experience }}</td>
+                <td>{{ therapist.contact_number }}</td>
+                <td>
+                  <button class="btn btn-primary" (click)="downloadFile(therapist.cv_document)" *ngIf="therapist.cv_document">
+                    Download CV
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-success" (click)="approveTherapist(therapist.id,therapist.email)">Approve</button>
+                  <button class="btn btn-danger" (click)="rejectTherapist(therapist.id,therapist.email)">Reject</button>
+                  <button class="btn btn-warning" (click)="blockTherapist(therapist.email)">Block</button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Data Graphs Section -->
+<div class="content-section" *ngIf="activeSection === 'data'">
+  <style>
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .summary-cards .card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-cards .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .summary-cards .card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(30deg);
+    }
+
+    .summary-cards .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+    .summary-cards .card p {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Icon styles */
+    .summary-cards .card::after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 3rem;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .summary-cards .card:nth-child(1)::after {
+      content: "\f0c0"; /* users icon */
+    }
+
+    .summary-cards .card:nth-child(2)::after {
+      content: "\f073"; /* calendar check icon */
+    }
+    </style>
+
+    <div class="summary-cards">
+      <div class="card">
+        <h3>Total Users</h3>
+        <p>{{ totalUsers }}</p>
+      </div>
+      <div class="card">
+        <h3>Total Tests Taken</h3>
+        <p>{{ totalQuickTests }}</p>
+      </div>
+    </div>
+
+  <!-- Quick Test Usage Chart -->
+
+<div class="chart-container" style="position: relative; height: 400px; width: 100%;">
+  <canvas id="quickTestChart" width="600" height="400"></canvas>
+</div>
+
+
+</div>
+
+      <!-- Feedback Section -->
+      <div class="content-section" *ngIf="activeSection === 'feedback'">
+        <h2>App Feedback</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Rating</th>
+                <th>Complaints</th>
+                <th>Requirements</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let feedback of feedbackList">
+                <td>{{ feedback.user_id }}</td>
+                <td>{{ feedback.username }}</td>
+                <td>{{ feedback.email }}</td>
+                <td>{{ feedback.rating }}</td>
+                <td>{{ feedback.complaints }}</td>
+                <td>{{ feedback.requirements }}</td>
+                <td><button class="btn btn-danger" (click)="deleteFeedback(feedback._id['$oid'])">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="content-section" *ngIf="activeSection === 'blocked therapists'">
+        <h2>Blocked Therapists</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let therapist of blockedTherapists">
+                <td>{{ therapist.email }}</td>
+                <td>
+                  <button class="btn btn-warning" (click)="unblockTherapist(therapist.email)">Unblock</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- Appointment Data Section -->
+      <div class="content-section" *ngIf="activeSection === 'allAppointments'">
+        <h2>Appointment Requests</h2>
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+          <table style="margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Therapist</th>
+                <th>Patient Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>GAD-7</th>
+                <th>PHQ-9</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of allAppointmentRequests">
+                <td>{{ appointment.therapist_name }}</td>
+                <td>{{ appointment.user_name }}</td>
+                <td>{{ appointment.user_email }}</td>
+                <td>{{ appointment.message }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.gad7_score }}</td>
+                <td>{{ appointment.phq9_score }}</td>
+                <td>{{ appointment.sentiment_analysis_score }}</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Confirmed Appointments</h2>
+          <table style="margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Therapist</th>
+                <th>Patient Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>GAD-7</th>
+                <th>PHQ-9</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of allConfirmedAppointments">
+                <td>{{ appointment.therapist_name }}</td>
+                <td>{{ appointment.user_name }}</td>
+                <td>{{ appointment.user_email }}</td>
+                <td>{{ appointment.message }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.gad7_score }}</td>
+                <td>{{ appointment.phq9_score }}</td>
+                <td>{{ appointment.sentiment_analysis_score }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeProfileModal()">&times;</span>
+      <h3 style="font-family: 'Times New Roman', Times, serif;">Admin Profile</h3>
+      <label>Username:</label>
+      <input type="text" value="ak" disabled>
+      <label style="font-family: 'Times New Roman', Times, serif;">Email:</label>
+      <input type="text" value="amnakifayat10gujrat@gmail.com" disabled>
+    </div>
+  </div>
+
+  <!-- Update Therapist Modal -->
+  <div class="update-modal" *ngIf="showUpdateModal">
+    <div class="update-modal-content">
+      <h2>Update Therapist Details</h2>
+      <form>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" [(ngModel)]="selectedTherapist.username" name="username">
+        </div>
+
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" [(ngModel)]="selectedTherapist.age" name="age">
+        </div>
+
+        <div class="form-group">
+          <label>Gender</label>
+          <select [(ngModel)]="selectedTherapist.gender" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Qualification</label>
+          <input type="text" [(ngModel)]="selectedTherapist.qualification" name="qualification">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="selectedTherapist.email" name="email" disabled>
+        </div>
+
+        <div class="form-group">
+          <label>Experience (years)</label>
+          <input type="text" [(ngModel)]="selectedTherapist.experience" name="experience">
+        </div>
+
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input type="text" [(ngModel)]="selectedTherapist.contact_number" name="contact_number">
+        </div>
+
+        <div class="update-modal-actions">
+          <button type="button" class="cancel-btn" (click)="closeUpdateModal()">Cancel</button>
+          <button type="button" class="save-btn" (click)="updateTherapist()">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

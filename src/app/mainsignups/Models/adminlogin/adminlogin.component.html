@@ -1,0 +1,85 @@
+<style>
+ label{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            color: rgb(15, 5, 5);
+            font-weight: bold;
+          }
+h5{
+   font-family: 'Times New Roman', Times, serif;
+font-size: 28px;
+color: rgb(15, 5, 5);
+font-weight: bold
+}
+input{
+  color: aqua;
+}
+</style>
+
+
+<button type="button" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#adminmodal" >
+  Admin login
+ </button>
+
+ <div class="modal fade" id="adminmodal" tabindex="-1" aria-labelledby="adminmodal" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Admin Login</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <form (ngSubmit)="loginmodal()">
+         <div class="modal-body">
+
+           <div class="form-group">
+             <label>Username:</label>
+             <input name="adminname" [(ngModel)]="adminname" (input)="ValidateInput(adminname,'adminname')"  class="form-control" />
+             <span class="text-danger">{{error.adminname}}</span>
+           </div>
+
+           <div class="form-group" style="position: relative;">
+  <label>Password:</label>
+  <input type="passkey"
+         [(ngModel)]="passkey"
+         (input)="ValidateInput(passkey,'passkey')"
+         name="passkey"
+         class="form-control"
+         [type]="showPassword ? 'text' : 'password'"
+         style="padding-right: 60px;" />
+  <button type="button"
+          class="toggle-password"
+          (click)="togglePassword()"
+          style="position: absolute; right: 10px; top: 70%; transform: translateY(-50%); border: none; background: transparent;">
+    {{ showPassword ? 'Hide' : 'Show' }}
+  </button>
+  <span class="text-danger">{{ error.passkey }}</span>
+</div>
+
+
+         </div>
+         <div class="modal-footer d-flex flex-column align-items-center">
+          <!-- Centered Login & Forget Password -->
+          <div class="text-center">
+              <button type="submit" class="btn btn-primary" style="width: 90px;">Login</button>
+              <a href="javascript:void(0);" (click)="forgotPassword()" class="mt-2 d-block"
+                 style="text-decoration: underline; color: rgb(214, 24, 24);">
+                  Forget Password?
+              </a>
+          </div>
+
+          <!-- Developer Button in Bottom-Right
+          <div class="w-100 d-flex justify-content-end mt-3">
+              <button type="button" style="background-color: red;" routerLink="/adminportal" data-bs-dismiss="modal">
+                  Developer
+              </button>
+          </div>-->
+      </div>
+
+
+
+       </form>
+     </div>
+   </div>
+ </div>
+
+

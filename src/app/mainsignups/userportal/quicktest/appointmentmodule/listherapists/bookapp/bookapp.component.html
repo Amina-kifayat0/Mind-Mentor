@@ -1,0 +1,444 @@
+<style>
+  /* Modern Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+  /* Full-Page Background with Pattern */
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 40px 20px 20px; /* Top padding added for header */
+    min-height: 100vh;
+    box-sizing: border-box;
+    background:
+      linear-gradient(135deg, rgba(110, 142, 251, 0.9) 0%, rgba(74, 108, 247, 0.95) 100%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(255,255,255,0.05)" width="50" height="50" x="0" y="0"/><rect fill="rgba(255,255,255,0.05)" width="50" height="50" x="50" y="50"/></svg>');
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Animated Floating Elements */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><circle cx="400" cy="400" r="60" fill="rgba(255,255,255,0.08)"/><circle cx="200" cy="600" r="80" fill="rgba(255,255,255,0.08)"/><circle cx="700" cy="300" r="40" fill="rgba(255,255,255,0.08)"/><circle cx="500" cy="100" r="90" fill="rgba(255,255,255,0.08)"/></svg>');
+    animation: float 15s infinite alternate ease-in-out;
+    z-index: -1;
+  }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(20px, 30px) rotate(3deg); }
+    100% { transform: translate(-15px, -20px) rotate(-2deg); }
+  }
+
+  /* Main Heading with Decorative Elements */
+  .header-container {
+    text-align: center;
+    margin: 0 auto 2rem;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    display: inline-block;
+    letter-spacing: -1px;
+  }
+
+  .main-title::before, .main-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateY(-50%);
+  }
+
+  .main-title::before {
+    left: -80px;
+  }
+
+  .main-title::after {
+    right: -80px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+
+  /* Glass Morphism Container */
+  .container {
+    width: 85%;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform-style: preserve-3d;
+    transform: perspective(500px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: visible;
+  }
+
+  .container::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0)
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+  }
+
+  .container:hover {
+    transform: perspective(500px) translateY(-8px) rotateX(1deg);
+    box-shadow:
+      0 15px 40px rgba(0, 0, 0, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Input Grid */
+  .input-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.8rem;
+  }
+
+  /* Input Groups with Floating Labels */
+  .input-group {
+    position: relative;
+  }
+
+  label {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4a6cf7;
+    background: white;
+    padding: 0 8px;
+    border-radius: 12px;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Enhanced Input Fields */
+  input, textarea, select {
+    width: 100%;
+    padding: 1.1rem;
+    border: 1px solid #e0e8ff;
+    border-radius: 14px;
+    font-size: 1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #4a6cf7;
+    background: white;
+    box-shadow:
+      0 0 0 3px rgba(74, 108, 247, 0.15),
+      0 5px 15px rgba(74, 108, 247, 0.1);
+    outline: none;
+    transform: translateY(-3px);
+  }
+
+  textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a6cf7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+  }
+
+  /* Premium Submit Button */
+  button[type="submit"] {
+    background: linear-gradient(135deg, #4a6cf7 0%, #2541b2 100%);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1.3rem;
+    border: none;
+    border-radius: 14px;
+    margin: 2rem 0 1rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow:
+      0 6px 20px rgba(74, 108, 247, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+  }
+
+  button[type="submit"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2541b2 0%, #4a6cf7 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  button[type="submit"]:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 30px rgba(74, 108, 247, 0.4),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+
+  button[type="submit"]:hover::before {
+    opacity: 1;
+  }
+
+  button[type="submit"]:active {
+    transform: translateY(0);
+  }
+
+  /* Validation Styles */
+  .error-message {
+    color: #ff4444;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .honesty-notice {
+    background: rgba(255, 168, 0, 0.1);
+    border-left: 4px solid #FFA800;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .honesty-notice i {
+    color: #FFA800;
+    font-size: 1.2rem;
+    margin-top: 2px;
+  }
+
+  .honesty-notice p {
+    margin: 0;
+    color: #5d4037;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .container {
+      width: 90%;
+      padding: 2.5rem;
+    }
+
+    .main-title {
+      font-size: 2.8rem;
+    }
+
+    .main-title::before,
+    .main-title::after {
+      width: 40px;
+    }
+
+    .main-title::before {
+      left: -60px;
+    }
+
+    .main-title::after {
+      right: -60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 2rem;
+    }
+
+    .main-title {
+      font-size: 2.4rem;
+    }
+
+    .main-title::before,
+    .main-title::after {
+      display: none;
+    }
+
+    .input-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 30px 15px 15px;
+    }
+
+    .main-title {
+      font-size: 2rem;
+    }
+
+    .container {
+      width: 95%;
+      padding: 1.8rem 1.5rem;
+      border-radius: 18px;
+    }
+
+    button[type="submit"] {
+      padding: 1.2rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+  }
+</style>
+
+<body>
+  <div class="header-container">
+    <h1 class="main-title">Book Session</h1>
+    <p class="subtitle">Schedule your appointment with ease</p>
+  </div>
+
+  <div class="container">
+    <form #form="ngForm" (ngSubmit)="submitAppointment()">
+      <div class="input-row">
+        <!-- User Name -->
+        <div class="input-group">
+          <label for="user_name">Your Name</label>
+          <input type="text" id="user_name" [(ngModel)]="appointmentData.user_name" name="user_name" required />
+        </div>
+
+        <!-- User Email -->
+        <div class="input-group">
+          <label for="user_email">Your Email</label>
+          <input type="email" id="user_email" [(ngModel)]="appointmentData.user_email" name="user_email" required />
+        </div>
+      </div>
+
+      <div class="input-row">
+        <!-- User Age -->
+        <div class="input-group">
+          <label for="user_age">Your Age</label>
+          <input type="number" id="user_age" [(ngModel)]="appointmentData.user_age" name="user_age" required />
+        </div>
+
+        <!-- User Gender -->
+        <div class="input-group">
+          <label for="user_gender">Your Gender</label>
+          <select id="user_gender" [(ngModel)]="appointmentData.user_gender" name="user_gender" required>
+            <option value="" disabled selected>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Appointment Date -->
+      <div class="input-group">
+        <label for="date">Appointment Date</label>
+        <input type="datetime-local" [(ngModel)]="appointmentData.date" name="date" required />
+      </div>
+
+      <!-- Message -->
+      <div class="input-group">
+        <label for="message">Message</label>
+        <textarea id="message" [(ngModel)]="appointmentData.message" name="message" required></textarea>
+      </div>
+
+      <div class="input-row">
+        <!-- GAD-7 Score -->
+        <div class="input-group">
+          <label for="gad7_score">GAD-7 Score</label>
+          <input type="number" id="gad7_score" [(ngModel)]="appointmentData.gad7_score" name="gad7_score" min="0" max="21" />
+        </div>
+
+        <!-- PHQ-9 Score -->
+        <div class="input-group">
+          <label for="phq9_score">PHQ-9 Score</label>
+          <input type="number" id="phq9_score" [(ngModel)]="appointmentData.phq9_score" name="phq9_score" min="0" max="27" />
+        </div>
+      </div>
+
+      <!-- Sentiment Analysis Score -->
+      <div class="input-group">
+        <label for="sentiment_analysis_score">Sentiment Analysis</label>
+        <select id="sentiment_analysis_score" [(ngModel)]="appointmentData.sentiment_analysis_score" name="sentiment_analysis_score" required>
+          <option value="" disabled selected>Select your sentiment</option>
+          <option value="positive">Positive</option>
+          <option value="neutral">Neutral</option>
+          <option value="negative">Negative</option>
+          <option value="null">I dont have socials</option>
+        </select>
+        <div *ngIf="form.submitted && !appointmentData.sentiment_analysis_score" class="error-message">
+          Please select your sentiment analysis result
+        </div>
+      </div>
+
+      <!-- Honesty Notice -->
+      <div class="input-group" *ngIf="appointmentData.gad7_score !== null || appointmentData.phq9_score !== null">
+        <div class="honesty-notice">
+          <i class="fas fa-exclamation-circle"></i>
+          <p>Please ensure your test results and sentiment analysis accurately reflect your current state, as they are crucial for your treatment and well-being.</p>
+        </div>
+      </div>
+
+      <button type="submit">Book Appointment</button>
+    </form>
+  </div>
+</body>

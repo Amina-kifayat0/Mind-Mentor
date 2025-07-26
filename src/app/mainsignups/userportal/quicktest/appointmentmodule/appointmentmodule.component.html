@@ -1,0 +1,73 @@
+<style>
+  .custom-component {
+    background-color: rgb(220, 220, 243); /* Set the desired background color */
+    padding: 46px; /* Optional padding */
+    border-radius: 5px; /* Optional rounded corners */
+  }
+   .rectangle {
+      width: 1100px; /* Adjust width as needed */
+      height: 600px; /* Adjust height as needed */
+      background-color:  rgb(31, 34, 184); /* Light blue color */
+       /* Optional: black border for definition */
+      border-radius: 23px; /* Optional: rounded corners */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center; /* Center text/content */
+      font-family: Arial, sans-serif;
+      margin: 20px auto; /* Center the div horizontally */
+    }
+    section {
+      background-color: rgb(255, 252, 252); /* You can use any color here */
+      padding: 20px; /* Optional: Adds some padding for better visibility */
+  }
+
+</style>
+
+<div class="custom-component">
+<div class="rectangle">
+    <section class="p-2 text-center">
+      <app-navbar-secondary></app-navbar-secondary>
+
+   <!--- <h6 style="font-size: 2rem; color: rgb(78, 64, 175);; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-align: left;">MIND MENTOR</h6>-->
+    <div class="container">
+
+      <div class="d-sm-flex align-items-center justify-content-between">
+        <div>
+          <h1 style="font-weight:bold;"><span class="text-primary" style=" font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    font-weight: bold; color: rgb(5, 5, 87); font-size: 53px;">
+            Appointment Booking
+          </span>
+          </h1>
+          <p class="lead my-4" style="font-family: 'Times New Roman', Times, serif;">
+            "Book Your Appointment with our Best Licensed Therapists Now,
+             Take a step for Yourself !"
+          </p>
+          <!--<button type="button" class="button"  data-bs-toggle="modal" data-bs-target="#detailModal">
+            QUICK TEST
+          </button>-->
+          <!--<app-quicktest></app-quicktest>-->
+          <button type="button"class="button2"  routerLink="/listherapists" style="width: 30%;
+   padding: 10px;
+   background-color:rgb(78, 64, 175);
+   color: #fff;
+   border: none;
+   border-radius: 23px;
+   cursor: pointer;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 19px;
+   font-weight: bold;
+   display: block;
+   margin: 0 auto;">
+     NEXT
+   </button>
+
+        </div>
+        <img src="images/Website.gif"class="img-fluid w-50 d-none d-sm-block"  alt=""/>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+
+

@@ -1,0 +1,80 @@
+<!-- Bootstrap styling -->
+<style>
+  label {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(15, 5, 5);
+    font-weight: bold;
+  }
+  h5 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    color: rgb(15, 5, 5);
+    font-weight: bold;
+  }
+  input {
+    color: aqua;
+  }
+</style>
+
+<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#usersignupmodel" style="width: 100px;height: 50px;font-weight: bold;font-size: 18px;">
+  Sign up
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="usersignupmodel" tabindex="-1" aria-labelledby="usersignupmodel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="usersignupmodel">MindMentor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form (ngSubmit)="signmodal()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Username:</label>
+            <input name="username" [(ngModel)]="username" (ngModelChange)="ValidateInput($event,'username')" class="form-control" />
+            <span class="text-danger">{{error.username}}</span>
+          </div>
+          <div class="form-group">
+            <label>Age:</label>
+            <input name="age" [(ngModel)]="age" (ngModelChange)="ValidateInput($event,'age')" class="form-control" />
+            <span class="text-danger">{{error.age}}</span>
+          </div>
+          <div class="form-group">
+            <label>Gender:</label>
+            <input name="gender" [(ngModel)]="gender" (ngModelChange)="ValidateInput($event,'gender')" class="form-control" />
+            <span class="text-danger">{{error.gender}}</span>
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input name="email" [(ngModel)]="email" (ngModelChange)="ValidateInput($event,'email')" class="form-control" />
+            <span class="text-danger">{{error.email}}</span>
+          </div>
+          <div class="form-group" style="position: relative;">
+  <label>Password:</label>
+  <input type="password"
+         name="password"
+         [(ngModel)]="password"
+         (ngModelChange)="ValidateInput($event, 'password')"
+         class="form-control"
+         [type]="showPassword ? 'text' : 'password'"
+         style="padding-right: 60px;" />
+  <button type="button"
+          class="toggle-password"
+          (click)="togglePassword()"
+          style="position: absolute; right: 10px; top: 70%; transform: translateY(-50%); border: none; background: transparent;">
+    {{ showPassword ? 'Hide' : 'Show' }}
+  </button>
+  <span class="text-danger">{{ error.password }}</span>
+</div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Signup</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
