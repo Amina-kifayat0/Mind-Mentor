@@ -1,0 +1,23 @@
+# Node dependencies (Angular)
+frontend/node_modules/
+
+# Python virtual environment
+backend/venv/
+
+# Environment files
+**/.env
+
+# OS and IDE junk
+.DS_Store
+*.log
+*.pyc
+__pycache__/
+.vscode/
+
+# Git LFS managed files
+*.zip
+*.tar
+*.rar
+*.7z
+*.exe
+*.bin

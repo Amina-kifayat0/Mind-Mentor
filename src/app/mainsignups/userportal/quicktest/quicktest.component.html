@@ -1,0 +1,474 @@
+<style>
+  .button {
+    padding: 15px 30px;
+            font-size: 1.5em;
+            background-color: #1e1e66; /* Background color (e.g., green) */
+            color: white; /* Text color (e.g., white) */
+            border: none; /* Optional: Removes default border */
+            border-radius: 11px; /* Optional: Adds rounded corners */
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+  }
+      /* Container to center the form on the page */
+      .form-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+      }
+
+      /* Styled boundary for the form */
+      fieldset {
+      width: 1000px;
+      max-width: 1000px; /* Ensures width doesn't exceed 1000px */
+      padding: 50px;
+      border-radius: 8px;
+      background-color: #ffffff; /* Background color */
+      box-sizing: border-box; /* Ensures padding is included in width */
+
+
+      }
+
+      legend {
+          font-size: 22px;
+          font-family: 'Times New Roman', Times, serif;
+          color: #1e1e66;
+          font-weight: bold;
+      }
+
+      label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+      }
+
+
+      button {
+          width: 50%;
+          padding: 10px;
+          background-color: #1e1e66;
+          color: #fff;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 19px;
+          font-weight: bold;
+          display: block;
+          margin: 0 auto;
+      }
+
+
+      button:hover {
+          background-color: #0056b3;
+      }
+      body {
+
+              background-image: url('images/Acce.gif'); /* Relative path to the image */
+              background-size: cover; /* Makes the background cover the entire area */
+              background-position: center; /* Centers the image */
+              height: 100vh; /* Full viewport height */
+              margin: 0; /* Removes default margin */
+              color: white; /* Text color */
+              display: flex; /* Flexbox layout */
+              align-items: center; /* Center vertically */
+              justify-content: center; /* Center horizontally */
+          }
+          p{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #1e1e66;
+          }
+          label{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            color: rgb(248, 246, 246);
+          }
+          .option-fieldset {
+            width: 40%;
+            padding: 5px;
+            border:  #6666ff; /* Dashed border for options */
+           border-radius: 3px;
+           margin-bottom: 10px;
+           background-color: #7777d3;
+
+  }
+  h3{
+    font-size: 30px;
+          font-family: 'Times New Roman', Times, serif;
+          color: #1e1e66;
+          font-weight: bold;
+          text-align: center;
+  }
+  #gad7form {
+      width: 1000px; /* Set a fixed width */
+      height: 600px; /* Set a fixed height */
+      padding: 20px;
+      border: 6px solid #6363f1;
+      border-radius: 8px;
+      background-color: #ffffff;
+      overflow-x: hidden; /* Enables horizontal scrolling if content overflows width */
+      overflow-y: auto;
+  }
+  .button2{
+          float: right;
+          width: 15%;
+          padding: 10px;
+          background-color: #7d7dca;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-family: 'Times New Roman', Times, serif;
+          font-weight: bold;
+          text-align: center;
+  }
+  .button-top-right {
+  position: absolute;
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  width: 170px;
+  background-color: #0056b3;
+  margin-right: 30px;
+  margin-top: 20px;
+}
+
+  </style>
+
+  <body>
+    <div class="container mt-4">
+      <!-- Button to open modal -->
+      <button  class="button-top-right"(click)="openModal()">Test History</button>
+
+
+
+
+  <div class="form-container">
+    <form  [formGroup]="gad7form"  (ngSubmit)="onSubmit()" id="gad7form" >
+        <fieldset >
+          <app-aboutest></app-aboutest>
+  <br><br><br>
+
+          <h3>ONLINE MENTAL HEALTH TEST</h3>
+
+            <div class="question">
+              <legend>1. Feeling nervous, anxious, or on edge?</legend>
+                 <fieldset class="option-fieldset">
+                  <label><input type="radio" formControlName="question1" value="0" required> Not at all</label>
+                </fieldset>
+                <fieldset class="option-fieldset">
+                     <label><input type="radio" formControlName="question1" value="1"> Several days</label>
+                    </fieldset>
+                    <fieldset class="option-fieldset">
+                       <label><input type="radio" formControlName="question1" value="2"> More than half the days</label>
+                      </fieldset>
+                      <fieldset class="option-fieldset">
+                         <label><input type="radio" formControlName="question1"value="3"> Nearly every day</label>
+                </fieldset>
+              </div>
+
+  <br>
+              <div class="question">
+                <legend>2. Not being able to control worrying?</legend>
+                   <fieldset class="option-fieldset">
+                    <label><input type="radio" formControlName="question2" value="0" required> Not at all</label>
+                  </fieldset>
+                  <fieldset class="option-fieldset">
+                       <label><input type="radio" formControlName="question2"  value="1"> Several days</label>
+                      </fieldset>
+                      <fieldset class="option-fieldset">
+                         <label><input type="radio" formControlName="question2"  value="2"> More than half the days</label>
+                        </fieldset>
+                        <fieldset class="option-fieldset">
+                           <label><input type="radio" formControlName="question2"  value="3"> Nearly every day</label>
+                  </fieldset>
+                </div>
+  <br>
+                <div class="question">
+                  <legend>3. Worrying too much about different things?</legend>
+                     <fieldset class="option-fieldset">
+                      <label><input type="radio" formControlName="question3"  value="0" required> Not at all</label>
+                    </fieldset>
+                    <fieldset class="option-fieldset">
+                         <label><input type="radio" formControlName="question3" value="1"> Several days</label>
+                        </fieldset>
+                        <fieldset class="option-fieldset">
+                           <label><input type="radio" formControlName="question3" value="2"> More than half the days</label>
+                          </fieldset>
+                          <fieldset class="option-fieldset">
+                             <label><input type="radio" formControlName="question3" value="3"> Nearly every day</label>
+                    </fieldset>
+                  </div>
+  <br>
+
+  <div class="question">
+    <legend>4. Trouble Relaxing:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question4" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question4" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question4"value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question4" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>5. Being so restless that it is hard to sit still:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question5" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question5"  value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio"formControlName="question5"  value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio"formControlName="question5" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>6. Becoming easily annoyed or irritable:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question6"  value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question6" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio"formControlName="question6" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question6"  value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>7. Feeling afraid, as if something awful might happen:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question7"  value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question7"  value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question7"  value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question7"  value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>8. Little interest or pleasure in doing things:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question8"  value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question8"  value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question8"  value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question8"  value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>9. Feeling down, depressed, or hopeless:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question9"  value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question9" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question9" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question9" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>10. Trouble falling or staying in Asleep, or sleeping too much:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question10" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question10" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question10" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question10" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>11. Feeling tired or having little energy:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question11" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question11" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question11" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question11" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>12. Poor appetite or overeating:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio"formControlName="question12" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question12" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question12" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question12" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>13. Feeling bad about yourself or that you are a failure or have let yourself or your family let down:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question13" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question13" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question13" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question13" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>14. Trouble concentrating on things, such as reading the newspaper or watching television:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question14" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question14" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question14" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question14" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>15. Moving or speaking so slowly that other people could have noticed Or the opposite being so figety or restless that you have been moving around a lot more than usual:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question15" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question15" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question15" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question15" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <div class="question">
+    <legend>16. Thoughts that you would be better off dead, or of hurting yourself:</legend>
+       <fieldset class="option-fieldset">
+        <label><input type="radio" formControlName="question16" value="0" required> Not at all</label>
+      </fieldset>
+      <fieldset class="option-fieldset">
+           <label><input type="radio" formControlName="question16" value="1"> Several days</label>
+          </fieldset>
+          <fieldset class="option-fieldset">
+             <label><input type="radio" formControlName="question16" value="2"> More than half the days</label>
+            </fieldset>
+            <fieldset class="option-fieldset">
+               <label><input type="radio" formControlName="question16" value="3"> Nearly every day</label>
+      </fieldset>
+    </div>
+  <br>
+
+  <button  type="submit" >SUBMIT</button>
+  <br>
+  <button1 type="submit"style="background-color: RED; height: 30px;width: 110px; border-radius: 3px;" routerLink="/sentimentmodule" >DEVELOPER</button1>
+
+</fieldset>
+    </form>
+
+
+    </div>
+      <!-- Modal -->
+      <div class="modal fade" id="testHistoryModal" tabindex="-1" role="dialog" aria-labelledby="testHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="testHistoryModalLabel" style="color: black;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Test History</h5>
+
+            </div>
+            <div class="modal-body">
+              <!-- Table of test history -->
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>GAD-7</th>
+                    <th>PHQ-9</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let test of testResults">
+                    <td>{{ test.timestamp }}</td>
+                    <td>{{ test.gad7_score }} ({{ test.anxiety_level }})</td>
+                    <td>{{ test.phq9_score }} ({{ test.depression_level }})</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+

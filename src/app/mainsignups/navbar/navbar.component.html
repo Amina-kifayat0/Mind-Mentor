@@ -1,0 +1,110 @@
+<style>
+   .modal.show {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .modal-dialog {
+    max-width: 500px;
+    margin: 10% auto;
+  }
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark py-4" style="background-color: #1e1e66;">
+  <div class="container">
+    <a href="#" class="navbar-brand" style="font-size: 2rem; color: white; font-family: 'Times New Roman', Times, serif; font-weight: bold;">
+      MindMentor
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item">
+          <a (click)="logout()" class="nav-link" style="color: white; margin-left: 60px; cursor: pointer;">
+            ↩🔒 Logout
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/feedback" class="nav-link" style="color: white; margin-right: 30px;margin-left: 40px;">Feedback</a>
+        </li>
+
+        <li class="nav-item">
+          <a (click)="openProfileModal()" class="nav-link" style="color: white; margin-right: 0px;margin-left: 20px; cursor: pointer;">My Profile</a>
+        </li>
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Profile Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'show': userProfile }" style="display: block;" *ngIf="userProfile">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">User Profile</h5>
+
+      </div>
+      <div class="modal-body">
+        <div *ngIf="userProfile">
+          <p><strong>Username:</strong> {{ userProfile.username }}</p>
+          <p><strong>Email:</strong> {{ userProfile.email }}</p>
+          <p><strong>Age:</strong> {{ userProfile.age }}</p>
+          <p><strong>Gender:</strong> {{ userProfile.gender }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="openUpdateModal()">Edit</button>
+
+        <button type="button"   class="btn btn-secondary" (click)="closeProfileModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ✅ Update Profile Modal -->
+<!-- ✅ Update Profile Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'show': updateModalOpen }" *ngIf="updateModalOpen">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="updateProfile()" #updateForm="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Profile</h5>
+
+        </div>
+        <div class="modal-body">
+          <div class="form-group mb-2">
+            <label>Username</label>
+            <input type="text" class="form-control" [(ngModel)]="userProfile.username" name="username" required>
+          </div>
+          <div class="form-group mb-2">
+            <label>Email</label>
+            <input type="email" class="form-control" [(ngModel)]="userProfile.email" name="email" required>
+          </div>
+          <div class="form-group mb-2">
+            <label>Age</label>
+            <input type="number" class="form-control" [(ngModel)]="userProfile.age" name="age" required>
+          </div>
+          <div class="form-group mb-2">
+            <label>Gender</label>
+            <select class="form-control" [(ngModel)]="userProfile.gender" name="gender" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <button type="button" class="btn btn-secondary" (click)="closeUpdateModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

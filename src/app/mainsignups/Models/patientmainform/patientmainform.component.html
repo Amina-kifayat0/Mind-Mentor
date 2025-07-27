@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >MindMentor Login</title>
+    <style>
+        body { display: flex; height: 100vh; margin: 0; font-family: Arial, sans-serif; }
+        .left { width: 50%; margin-left: 70px;background-color: #fff; display: flex; align-items: center; justify-content: center; }
+        .right { width: 50%; margin-top: 70px;align-items: center; justify-content: center; background-color: #fff; flex-direction: column; }
+        .login-container, .signup-container { border: 2px solid #d1d5db; padding: 20px; border-radius: 2px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); width: 380px; }
+        .login-container { height: 450px; margin-bottom: 20px; }
+        .signup-container { height: 150px; text-align: center; }
+        .login-container h2 { text-align: center; margin-bottom: 20px; }
+        .input-group { display: flex; flex-direction: column; margin-top: 10px; position: relative; }
+        .input-group label { font-size: 12px; color: #6b7280; margin-bottom: 5px; }
+        .input-field { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 5px; }
+        .password-container { position: relative; }
+        .toggle-password { position: absolute; right: 10px; top: 35px; cursor: pointer; font-size: 12px; color: #3b82f6; background: none; border: none; }
+        .login-button { width: 100%; padding: 10px; margin-top: 20px; background-color: #3b82f6; color: white; border: none; border-radius: 10px; cursor: pointer; }
+        .login-button:hover { background-color: #2563eb; }
+        .separator { display: flex; align-items: center; margin: 20px 0; }
+        .separator hr { flex-grow: 2; border: 2; border-top: 2px solid #8a8b8d; }
+        .separator span { margin: 0 10px; color: #6b7280; }
+        .signup button { background: none; border: none; color: #3b82f6; cursor: pointer; }
+        .signup button:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="left">
+      <img src="images/gig.gif"  >
+    </div>
+    <div class="right">
+      <div class="login-container">
+        <h2>MindMentor</h2>
+        <div class="input-group">
+            <label>Username:</label>
+            <input type="text" class="input-field" [(ngModel)]="username">
+        </div>
+        <div class="input-group password-container">
+            <label>Password:</label>
+            <input type="password" class="input-field" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'">
+            <button class="toggle-password" (click)="togglePassword()" type="button">{{ showPassword ? 'Hide' : 'Show' }}</button>
+        </div>
+        <button class="login-button" (click)="login()">Log In</button>
+
+        <p class="text-danger" *ngIf="loginError">{{ loginError }}</p> <!-- Display login error -->
+        <!--<div style="text-align: center;">
+          <a href="#" style="color: red;">Forgot Password?</a>
+        </div>-->
+    </div>
+
+        <div class="signup-container">
+            <span style="font-family: 'Calibri'; font-weight: bold;">Don’t have an account?</span><br><br>
+            <div class="signup">
+                <app-usersignup></app-usersignup>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<app-navbar></app-navbar>
+<br>
+
+<style>
+  /* Therapist Cards Container - Arranges cards in a vertical list */
+  .therapist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  /* Therapist Card - Full-width row layout */
+  .therapist-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    max-width: 1000px;
+    height:450px; /* Increased height */
+    background: white; /* White background */
+    border: 3px solid #2a5ae0; /* Blue border */
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    color: black;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Hover Effect */
+  .therapist-card:hover {
+    transform: scale(1.03);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Left Side (Therapist Info) */
+  .therapist-info {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Heading Style */
+  .therapist-info h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0f0f0f;
+    margin-bottom: 10px;
+  }
+
+  /* Motivational Quote */
+  .therapist-info .quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  /* Therapist Details */
+  .therapist-info p {
+    font-size: 16px;
+    margin: 5px 0;
+    font-weight: 500;
+  }
+
+  /* Book Appointment Button */
+  .book-btn {
+    background-color: #8181e0;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 15px;
+  }
+
+  /* Button Hover */
+  .book-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  /* Right Side (Therapist Image Styling) */
+.therapist-image {
+  width: 280px;
+  height: 100%;
+  background: #f0f8ff; /* Light blue background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-left: 3px solid #080808; /* Blue border */
+}
+
+.therapist-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the div properly */
+  border-radius: 0; /* Keeps the rectangular shape */
+}
+
+
+
+
+</style>
+
+<h2 style="font-family: 'Times New Roman', Times, serif; text-align: center; font-size: 30px; font-weight: bold;">List of Therapists</h2>
+
+<!-- Therapist Cards List -->
+<div class="therapist-container">
+  <div *ngFor="let therapist of therapists" class="therapist-card">
+
+    <!-- Left Side: Therapist Info -->
+    <div class="therapist-info">
+      <h2>THERAPIST, CONSULTANT</h2>
+      <p><strong>Name:</strong> {{ therapist.username }}</p>
+      <p><strong>Age:</strong> {{ therapist.age }}</p>
+      <p><strong>Gender:</strong> {{ therapist.gender }}</p>
+      <p><strong>Email:</strong> {{ therapist.email }}</p>
+      <p><strong>Qualification:</strong> {{ therapist.qualification }}</p>
+      <p><strong>Experience:</strong> {{ therapist.experience }} </p>
+      <button class="book-btn" routerLink="/bookapp" (click)="selectTherapist(therapist)">Book Appointment</button>
+    </div>
+
+    <!-- Right Side: Image Placeholder -->
+    <div class="therapist-image">
+      <img src="images/therapy.jfif" alt="Therapist Image">
+    </div>
+
+  </div>
+</div>
+
+<br>
+<app-footer></app-footer>

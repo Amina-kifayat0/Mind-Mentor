@@ -1,0 +1,12 @@
+.paimg{
+    float: right;
+    right: 70;
+    width: 350px;/* Maintain original size */
+    margin-left: 10px;
+}
+
+h1{
+  font-size: 45px;
+  font-family: 'Times New Roman', Times, serif;
+
+}

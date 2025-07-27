@@ -1,0 +1,139 @@
+<style>
+  label {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(15, 5, 5);
+    font-weight: bold;
+  }
+
+  h5 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    color: rgb(15, 5, 5);
+    font-weight: bold;
+  }
+
+ /* General Form Styling */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Label Styling */
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Input Fields */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Input Focus Effect */
+input:focus, textarea:focus, select:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+button2 {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Form */
+@media (max-width: 500px) {
+    form {
+        width: 90%;
+    }
+}
+
+</style>
+
+<button type="button" class="btn btn-success mb-2 w-100" data-bs-toggle="modal" data-bs-target="#therapistregistration">
+  Therapist Registration
+</button>
+
+<div class="modal fade" id="therapistregistration" tabindex="-1" aria-labelledby="therapistregistration" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="therapistregistration">Therapist Portal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form (submit)="onSubmit()" enctype="multipart/form-data">
+
+        <label>Username:</label>
+        <input type="text" [(ngModel)]="username" name="username" (input)="ValidateInput('username', username)" required />
+        <span class="text-danger">{{ error.username }}</span>
+
+        <label>Age:</label>
+        <input type="number" [(ngModel)]="age" name="age" (input)="ValidateInput('age', age)" required />
+        <span class="text-danger">{{ error.age }}</span>
+
+        <label>Gender:</label>
+        <select [(ngModel)]="gender" name="gender" (change)="ValidateInput('gender', gender)" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <span class="text-danger">{{ error.gender }}</span>
+
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="email" name="email" (input)="ValidateInput('email', email)" required />
+        <span class="text-danger">{{ error.email }}</span>
+
+        <label>Password:</label>
+        <input type="password" [(ngModel)]="password" name="password" (input)="ValidateInput('password', password)" required  />
+        <span class="text-danger">{{ error.password }}</span>
+
+        <label>Qualification:</label>
+        <input type="text" [(ngModel)]="qualification" name="qualification" (input)="ValidateInput('qualification', qualification)" required />
+        <span class="text-danger">{{ error.qualification }}</span>
+
+        <label>Experience:</label>
+        <input type="text" [(ngModel)]="experience" name="experience" (input)="ValidateInput('experience', experience)" required />
+        <span class="text-danger">{{ error.experience }}</span>
+
+        <label>Contact Number:</label>
+        <input type="text" [(ngModel)]="contact_number" name="contact_number" (input)="ValidateInput('contact_number', contact_number)" required />
+        <span class="text-danger">{{ error.contact_number }}</span>
+
+        <label >Upload CV:</label>
+        <input style="font-family: 'Times New Roman', Times, serif; font-weight: bold;font-size: 17px; " type="file" (change)="onFileSelected($event)" required />
+        <span class="text-danger">{{ error.cv }}</span>
+
+        <button type="submit" style="background-color: rgb(86, 86, 179); border-radius: 10px; color: white; height: 40px; width: 100px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Sign Up</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>

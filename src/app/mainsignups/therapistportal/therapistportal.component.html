@@ -1,0 +1,604 @@
+<style>
+  /* Color Variables - Blue Theme */
+  :root {
+    --primary-blue: #1e3a8a;
+    --secondary-blue: #3b82f6;
+    --light-blue: #93c5fd;
+    --pale-blue: #e0f2fe;
+    --dark-blue: #172554;
+    --white: #ffffff;
+    --success-green: #16a34a;
+    --error-red: #dc2626;
+    --text-dark: #1e293b;
+    --text-light: #f8fafc;
+    --border-color: #cbd5e1;
+  }
+
+  /* Base Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--pale-blue);
+    color: var(--text-dark);
+  }
+
+  /* Dashboard Layout */
+  .dashboard-container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Styles - Blue Gradient */
+  .sidebar {
+    width: 280px;
+    background: #93c5fd;
+    color: var(--white);
+    padding: 2rem 1.5rem;
+    position: fixed;
+    height: 100vh;
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .sidebar-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-item {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  .nav-item:hover {
+    background-color: var(--secondary-blue);
+    transform: translateX(5px);
+  }
+
+  /* Main Content Styles */
+  .main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem;
+    background-color: var(--white);
+    min-height: 100vh;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.05);
+  }
+
+  .section-title {
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-blue);
+  }
+
+  /* Table Styles with Blue Accents */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: rgb(226, 221, 221);
+  }
+
+  .data-table th {
+    background-color: #93c5fd;
+    color: var(--white);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+  }
+
+  .data-table td {
+    padding: 1rem;
+    border-bottom:#1e3a8a;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .data-table tr:hover td {
+    background-color: #3b82f6;
+  }
+
+  /* Button Styles */
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-success {
+    background-color: var(--success-green);
+    color: var(--white);
+  }
+
+  .btn-danger {
+    background-color: var(--error-red);
+    color: var(--white);
+  }
+
+  .btn-success:hover {
+    background-color: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  .btn-danger:hover {
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--primary-blue);
+    background-color: var(--pale-blue);
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    border: 1px dashed var(--light-blue);
+  }
+
+  /* Mobile Menu Button - Blue Style */
+  .mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn:hover {
+    background-color: var(--secondary-blue);
+    transform: scale(1.05);
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .sidebar {
+      width: 250px;
+    }
+    .main-content {
+      margin-left: 250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+    .sidebar {
+      transform: translateX(-100%);
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .main-content {
+      margin-left: 0;
+      padding: 1.5rem;
+    }
+    .data-table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.therapist-info {
+  text-align: left;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Container style */
+.calendar-container {
+  background-color: #93c5fd;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: calc(100% - 40px);  /* Ensures it's fully visible */
+  margin: 40px auto 60px 330px; /* 👈 Adjust this: margin-left: 220px; */
+  padding: 20px;
+  position: relative;
+  z-index: 10; /* Keeps it above the sidebar */
+  transition: all 0.3s ease;
+}
+
+
+/* Optional: Add extra margin to push calendar further away from the left */
+@media screen and (max-width: 768px) {
+  .calendar-container {
+    margin-left: 10px; /* Small margin for smaller screens */
+    width: calc(100% - 20px); /* Adjusts for mobile */
+  }
+}
+
+::ng-deep .cal-month-view .cal-header {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #f0f4f8;
+  color: #1a202c;
+  border-bottom: 1px solid #ccc;
+}
+::ng-deep .cal-month-view .cal-header .cal-header-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+/* Calendar header styles */
+.cal-month-view .cal-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.cal-month-view .cal-header .cal-month {
+  font-size: 1.4rem;
+  color: #1e90ff;
+}
+
+.cal-month-view .cal-header .cal-year {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Adjustments for the calendar navigation controls (next/prev buttons) */
+.cal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal-nav button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #1e90ff;
+}
+
+.cal-nav button:hover {
+  background-color: #f0f8ff;
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--dark-blue);
+  font-family: 'Times New Roman', Times, serif;
+}
+.calendar-container {
+    padding: 10px;
+  }
+
+  .cal-month-view .cal-cell {
+    min-height: 60px;
+    font-size: 12px;
+  }
+
+  .cal-month-view .cal-day-number {
+    font-size: 0.8rem;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.3rem;
+  }
+
+  mwl-calendar-month-view {
+    font-size: 13px;
+  }
+  .reset-container {
+  margin: 50px auto;
+  max-width: 400px;
+  text-align: center;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+</style>
+
+<div class="dashboard-container">
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Therapist Portal</h2>
+    </div>
+
+    <div class="nav-menu">
+      <a href="#" class="nav-item" (click)="openProfileModal($event)" >
+        <i style="margin-right: 10px;"></i>
+        <img src="images/...png" style="width: 40px; height: 40px; margin-left: 50px; margin-right: auto;">
+      </a>
+
+      <!-- Modal -->
+      <!-- Modal -->
+<div *ngIf="showProfileModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="therapist-info">
+      <h2 style="font-family: 'Times New Roman', Times, serif; font-weight: bold;font-size: 24px;">Your Profile</h2>
+      <hr><br>
+      <p><strong>Name:</strong> {{ therapist.username }}</p>
+      <p><strong>Age:</strong> {{ therapist.age }}</p>
+      <p><strong>Gender:</strong> {{ therapist.gender }}</p>
+      <p><strong>Email:</strong> {{ therapist.email }}</p>
+      <p><strong>Qualification:</strong> {{ therapist.qualification }}</p>
+      <p><strong>Experience:</strong> {{ therapist.experience }}</p>
+      <p><strong>Contact Number:</strong> {{ therapist.contact_number }}</p>
+
+      <span class="close" (click)="closeProfileModal($event)" style="cursor:pointer;">&times;</span>
+      <hr><br>
+      <p style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">(In case, you want to update your profile, Contact with admin)</p>
+    </div>
+  </div>
+</div>
+
+      <a href="#" class="nav-item" (click)="showSection('requests');$event.preventDefault()">
+        <i class="fas fa-inbox" style="margin-right: 10px;"></i>
+        Appointment Requests
+      </a>
+      <a href="#" class="nav-item" (click)="showSection('confirmed');$event.preventDefault()">
+        <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+        Confirmed Appointments
+      </a>
+      <!-- Sidebar link -->
+<a href="#" class="nav-item"  (click)="showSection('calendar'); $event.preventDefault()">
+  <i class="fas fa-calendar-alt" style="margin-right: 10px;"></i>
+  Calendar
+
+
+
+      </a><br><br><br><br><br>
+      <a href="#" class="nav-item" (click)="logout()">
+        <i style="margin-right: 10px;"></i>
+        ╰┈➤Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+   <!-- Calendar View -->
+   <!-- Calendar Section -->
+<!-- Completely replace the body content for now just to test -->
+<!-- 👇 Your confirmed and requested appointments tables should be above this -->
+
+<!-- 📅 CALENDAR SECTION -->
+
+
+
+
+
+  <main class="main-content">
+    <!-- Appointment Requests Section -->
+    <div *ngIf="appointmentRequests.length > 0">
+      <h3 class="section-title">Appointment Requests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Patient Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Appointment Date</th>
+            <th>GAD-7</th>
+            <th>PHQ-9</th>
+            <th>Sentiment</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointmentRequests">
+            <td>{{ appointment.user_name }}</td>
+            <td>{{ appointment.user_age }}</td>
+            <td>{{ appointment.user_gender }}</td>
+            <td>{{ appointment.user_email }}</td>
+            <td>{{ appointment.message }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.gad7_score }}</td>
+            <td>{{ appointment.phq9_score }}</td>
+            <td>{{ appointment.sentiment_analysis_score }}</td>
+            <td>
+              <button class="btn btn-success btn-sm" (click)="approveAppointment(appointment._id)">
+                Approve
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="declineAppointment(appointment._id)">
+                Decline
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="appointmentRequests.length === 0" class="empty-state" style="background-color: #93c5fd;">
+      <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+      <p>No appointment requests at the moment.</p>
+    </div>
+
+    <!-- Confirmed Appointments Section -->
+<div *ngIf="confirmedAppointments.length > 0" style="margin-top: 3rem;">
+  <h3 class="section-title">Confirmed Appointments</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>GAD-7</th>
+        <th>PHQ-9</th>
+        <th>Sentiment</th>
+                <th>Reminder</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of confirmedAppointments">
+        <td>{{ appointment.user_name }}</td>
+        <td>{{ appointment.user_age }}</td>
+        <td>{{ appointment.user_gender }}</td>
+        <td>{{ appointment.user_email }}</td>
+        <td>{{ appointment.message }}</td>
+        <!-- Use Angular date pipe for formatting -->
+        <td>{{ appointment.date | date: 'short' }}</td> <!-- Format the date -->
+        <td>{{ appointment.gad7_score }}</td>
+        <td>{{ appointment.phq9_score }}</td>
+        <td>{{ appointment.sentiment_analysis_score }}</td>
+        <td>
+  <span *ngIf="isReminderDue(appointment.date)" style="color: green; font-weight: bold;">
+    ⏰ Reminder Sent
+  </span>
+  <span *ngIf="!isReminderDue(appointment.date)">
+    ⌛ Scheduled
+  </span>
+</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="confirmedAppointments.length === 0" class="empty-state">
+  <i class="fas fa-calendar-check" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+  <p>No confirmed appointments scheduled.</p>
+</div>
+
+
+<!-- 👇 After both tables -->
+<div *ngIf="showCalendar" class="calendar-container">
+  <h2 style="text-align: center; margin-bottom: 20px; font-family: 'Times New Roman', Times, serif;">📅 Therapist Calendar</h2>
+
+  <div class="calendar-header">
+    <h2 style="font-family: 'Times New Roman', Times, serif;">{{ viewDate | date: 'MMMM yyyy' }}</h2>
+  </div>
+
+  <mwl-calendar-month-view
+    [viewDate]="viewDate"
+    [events]="events"
+    [activeDayIsOpen]="true"
+    (dayClicked)="dayClicked($event)">
+  </mwl-calendar-month-view>
+</div>
+
+
+
+<script>
+  // Mobile menu toggle functionality
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+</script>
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
